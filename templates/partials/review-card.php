@@ -2,13 +2,28 @@
 /** @var \App\Model\ReviewCard $card */
 /** @var callable(?string): string $e escape helper defined in reviews.php */
 $image = $card->primaryImage();
+$count = count($card->images);
+$imagesJson = json_encode(
+    array_map(static fn (\App\Model\ReviewImage $i): array => ['url' => $i->url, 'alt' => $i->alt], $card->images),
+    JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES
+);
 ?>
 <article class="review-card flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-lg" data-review-id="<?= $card->id ?>">
   <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
     <?php if ($image !== null): ?>
-      <img src="<?= $e($image->url) ?>" alt="<?= $e($image->alt) ?>" loading="lazy" decoding="async"
-           class="h-full w-full object-cover" data-review-image>
+      <button type="button" class="group block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-blue-600"
+              aria-haspopup="dialog" aria-label="<?= $count > 1 ? "$count Fotos ansehen" : 'Foto vergrößern' ?>"
+              data-lightbox-open data-images="<?= $e($imagesJson) ?>">
+        <img src="<?= $e($image->url) ?>" alt="<?= $e($image->alt) ?>" loading="lazy" decoding="async"
+             class="h-full w-full object-cover transition duration-300 group-hover:scale-105" data-review-image>
+      </button>
       <div class="absolute inset-0 hidden" data-review-placeholder><?php include __DIR__ . '/placeholder.php'; ?></div>
+      <?php if ($count > 1): ?>
+        <span class="pointer-events-none absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-slate-900/70 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">
+          <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M4 5a2 2 0 012-2h8a2 2 0 012 2v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm-2 9V7.5A2 2 0 000 9.5V14a3 3 0 003 3h6.5a2 2 0 002-2H5a3 3 0 01-3-1z"/></svg>
+          <?= $count ?> Fotos
+        </span>
+      <?php endif; ?>
     <?php else: ?>
       <?php include __DIR__ . '/placeholder.php'; ?>
     <?php endif; ?>

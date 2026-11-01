@@ -39,8 +39,29 @@ final class ReviewPageTest extends TestCase
         $html = $this->html([new Review(1, 5, 'Lukas Ränke', null, null)]);
 
         self::assertStringContainsString('aria-label="Kein Bild vorhanden"', $html);
-        self::assertStringNotContainsString('<img', $html);
+        self::assertStringNotContainsString('data-review-image', $html);
+        self::assertStringNotContainsString('data-lightbox-open', $html);
         self::assertStringContainsString('Lukas R.', $html);
+    }
+
+    public function testMultipleImagesShowBadgeAndGalleryData(): void
+    {
+        $html = $this->html([new Review(1, 5, 'Max Mustermann', 'Super', null, [
+            new ReviewImage('https://x/a.jpg', 'A'),
+            new ReviewImage('https://x/b.jpg', 'B'),
+        ])]);
+
+        self::assertStringContainsString('2 Fotos', $html);
+        self::assertStringContainsString('data-lightbox-open', $html);
+        self::assertStringContainsString('https://x/b.jpg', $html);
+    }
+
+    public function testSingleImageHasNoBadge(): void
+    {
+        $html = $this->html([new Review(1, 5, 'Max Mustermann', 'Super', null, [new ReviewImage('https://x/a.jpg', 'A')])]);
+
+        self::assertStringNotContainsString('Fotos</span>', $html);
+        self::assertStringContainsString('data-lightbox-open', $html);
     }
 
     public function testUserContentIsEscaped(): void

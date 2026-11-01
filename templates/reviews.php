@@ -35,6 +35,18 @@ $avg = number_format($page->averageRating, 1, ',', '');
       </section>
     <?php endif; ?>
   </main>
+  <dialog id="lightbox" aria-label="Fotogalerie"
+          class="m-0 h-full max-h-none w-full max-w-none bg-transparent p-0 text-white backdrop:bg-slate-950/90">
+    <div class="flex h-full w-full flex-col items-center justify-center gap-3 p-4 sm:p-8" data-lightbox-backdrop>
+      <button type="button" class="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-2xl leading-none hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white" aria-label="Schließen" data-lightbox-close>&times;</button>
+      <div class="flex min-h-0 w-full flex-1 items-center justify-center gap-2 sm:gap-4">
+        <button type="button" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-2xl hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white" aria-label="Vorheriges Foto" data-lightbox-prev>&#8249;</button>
+        <img src="" alt="" class="max-h-full min-w-0 max-w-full rounded-lg object-contain shadow-2xl" data-lightbox-img>
+        <button type="button" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-2xl hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white" aria-label="Nächstes Foto" data-lightbox-next>&#8250;</button>
+      </div>
+      <p class="text-sm text-slate-300" aria-live="polite" data-lightbox-caption></p>
+    </div>
+  </dialog>
   <script src="/assets/app.js" defer></script>
 </body>
 </html>
