@@ -5,16 +5,16 @@ $image = $card->primaryImage();
 $count = count($card->images);
 ?>
 <article class="review-card flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-lg" data-review-id="<?= $card->id ?>">
-  <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+  <div class="review-media relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
     <?php if ($image !== null): ?>
-      <a href="<?= $e($image->url) ?>" class="glightbox group block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-blue-600"
-         data-gallery="review-<?= $card->id ?>" data-description="<?= $e($image->alt) ?>"
+      <a href="<?= $e($image->url) ?>" class="group block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-blue-600"
+         data-caption="<?= $e($image->alt) ?>"
          aria-label="<?= $count > 1 ? "$count Fotos ansehen" : 'Foto vergrößern' ?>" data-review-opener>
         <img src="<?= $e($image->url) ?>" alt="<?= $e($image->alt) ?>" loading="lazy" decoding="async"
              class="h-full w-full object-cover transition duration-300 group-hover:scale-105" data-review-image>
       </a>
       <?php foreach (array_slice($card->images, 1) as $more): ?>
-        <a href="<?= $e($more->url) ?>" class="glightbox hidden" data-gallery="review-<?= $card->id ?>" data-description="<?= $e($more->alt) ?>" aria-hidden="true" tabindex="-1"></a>
+        <a href="<?= $e($more->url) ?>" class="hidden" data-caption="<?= $e($more->alt) ?>" aria-hidden="true" tabindex="-1"></a>
       <?php endforeach; ?>
       <div class="absolute inset-0 hidden" data-review-placeholder><?php include __DIR__ . '/placeholder.php'; ?></div>
       <?php if ($count > 1): ?>

@@ -11,7 +11,7 @@ $avg = number_format($page->averageRating, 1, ',', '');
   <title>Kundenbewertungen – meinfenster24</title>
   <meta name="description" content="Das sagen unsere Kunden über meinfenster24.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect x='9' y='6' width='30' height='36' rx='2' fill='none' stroke='%231d4ed8' stroke-width='4'/%3E%3Cpath d='M24 6v36M9 24h30' stroke='%231d4ed8' stroke-width='4'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css" integrity="sha384-GPAzSuZc0kFvdIev6wm9zg8gnafE8tLso7rsAYQfc9hAdWCpOcpcNI5W9lWkYcsd" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/baguettebox.js@1.12.0/dist/baguetteBox.min.css" integrity="sha384-vBD183nAha00UOEmngFv+4V7pdhjm9UXChZG/1XelcTFFPceeZ20L6zw7aEe1Nku" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/app.css">
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased">
@@ -35,7 +35,7 @@ $avg = number_format($page->averageRating, 1, ',', '');
       </section>
     <?php endif; ?>
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js" integrity="sha384-/+Fc1LD6ksHYZ+2MChiSfjEXBcl4q2axUWhs6/CdnfqY5aLmrPwtysVzyeP0s60b" crossorigin="anonymous" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/baguettebox.js@1.12.0/dist/baguetteBox.min.js" integrity="sha384-U+kDo4wfTWpQWtz06ltmBAa+fhYdDeTVdBoV3NwsSrWwUbZ9bx+S/fdcB2pfRBiS" crossorigin="anonymous" defer></script>
   <script src="/assets/app.js" defer></script>
 </body>
 </html>

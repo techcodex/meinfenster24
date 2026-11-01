@@ -7,7 +7,7 @@ with SQL in the PHP backend and rendered server-side with Tailwind CSS.
 
 **Structure (MVC):** `public/index.php` bootstraps → `ReviewController` → `ReviewService` (business logic) →
 `SqliteReviewRepository` (SQL) → models (`Review`, `ReviewCard`, `ReviewPage`) → PHP templates in `templates/` (view).
-The lightbox uses [GLightbox](https://github.com/biati-digital/glightbox) from the jsDelivr CDN, so it needs internet
+The lightbox uses [baguetteBox.js](https://github.com/feimosi/baguetteBox.js) from the jsDelivr CDN, so it needs internet
 access; without it the image link opens the full-size photo instead.
 
 ## Run

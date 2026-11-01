@@ -54,7 +54,8 @@ final class ReviewPageTest extends TestCase
         self::assertStringContainsString('2 Fotos', $html);
         self::assertStringContainsString('data-review-opener', $html);
         self::assertStringContainsString('href="https://x/b.jpg"', $html);
-        self::assertSame(2, substr_count($html, 'data-gallery="review-1"'));
+        self::assertSame(2, substr_count($html, 'data-caption='));
+        self::assertStringContainsString('review-media', $html);
     }
 
     public function testSingleImageHasNoBadge(): void

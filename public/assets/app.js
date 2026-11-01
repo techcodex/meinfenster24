@@ -36,8 +36,8 @@
     });
   });
 
-  // Lightbox: GLightbox (CDN); anchors sharing a data-gallery form one gallery per review.
-  if (typeof GLightbox === 'function') {
-    GLightbox({ selector: '.glightbox', loop: true, touchNavigation: true, keyboardNavigation: true });
+  // Lightbox: baguetteBox (CDN). Each .review-media element is one gallery; touch swipe, mouse, keyboard and buttons.
+  if (window.baguetteBox) {
+    window.baguetteBox.run('.review-media', { buttons: true, captions: true, async: false });
   }
 })();
