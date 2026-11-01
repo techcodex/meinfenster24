@@ -15,6 +15,11 @@ final readonly class StarRating
         $this->value = max(0, min(self::MAX, $value ?? 0));
     }
 
+    public function isRated(): bool
+    {
+        return $this->value > 0;
+    }
+
     public function full(): int
     {
         return $this->value;

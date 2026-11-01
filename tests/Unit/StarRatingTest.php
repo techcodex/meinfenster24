@@ -29,4 +29,10 @@ final class StarRatingTest extends TestCase
     {
         self::assertSame('4 von 5 Sternen', (new StarRating(4))->label());
     }
+
+    public function testIsRated(): void
+    {
+        self::assertFalse((new StarRating(null))->isRated());
+        self::assertTrue((new StarRating(1))->isRated());
+    }
 }

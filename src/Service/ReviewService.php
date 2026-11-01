@@ -25,9 +25,9 @@ final class ReviewService
         $rated = array_filter($cards, fn (ReviewCard $c): bool => $c->rating->value > 0);
         $average = $rated === []
             ? 0.0
-            : array_sum(array_map( fn (ReviewCard $c): int => $c->rating->value, $rated)) / count($rated);
-        
-        return new ReviewPage($cards, round($average, 1), count($cards));
+            : array_sum(array_map(fn (ReviewCard $c): int => $c->rating->value, $rated)) / count($rated);
+
+        return new ReviewPage($cards, round($average, 1), count($cards), count($rated));
     }
 
     private function toCard(Review $review): ReviewCard

@@ -57,6 +57,7 @@ final class ReviewServiceTest extends TestCase
 
         self::assertSame(3, $page->count);
         self::assertSame(4.5, $page->averageRating); // unrated review ignored in average
+        self::assertSame(2, $page->ratedCount);
     }
 
     public function testEmptyRepository(): void

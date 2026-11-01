@@ -11,6 +11,7 @@ final readonly class ReviewPage
         public array $cards,
         public float $averageRating,
         public int $count,
+        public int $ratedCount = 0,
     ) {
     }
 }

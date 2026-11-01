@@ -17,9 +17,13 @@ final class Renderer
         $render = function (string $__file, array $__vars): string {
             extract($__vars, EXTR_SKIP);
             ob_start();
-            require $__file;
+            try {
+                require $__file;
 
-            return (string) ob_get_clean();
+                return (string) ob_get_contents();
+            } finally {
+                ob_end_clean();
+            }
         };
 
         return $render($file, $vars);

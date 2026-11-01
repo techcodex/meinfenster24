@@ -2,7 +2,6 @@
 /** @var \App\Model\ReviewCard $card */
 /** @var callable(?string): string $e escape helper defined in reviews.php */
 $image = $card->primaryImage();
-$extra = count($card->images) - 1;
 ?>
 <article class="review-card flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-lg" data-review-id="<?= $card->id ?>">
   <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
@@ -10,19 +9,18 @@ $extra = count($card->images) - 1;
       <img src="<?= $e($image->url) ?>" alt="<?= $e($image->alt) ?>" loading="lazy" decoding="async"
            class="h-full w-full object-cover" data-review-image>
       <div class="absolute inset-0 hidden" data-review-placeholder><?php include __DIR__ . '/placeholder.php'; ?></div>
-      <?php if ($extra > 0): ?>
-        <span class="absolute bottom-3 right-3 rounded-full bg-slate-900/70 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">+<?= $extra ?> <?= $extra === 1 ? 'Foto' : 'Fotos' ?></span>
-      <?php endif; ?>
     <?php else: ?>
       <?php include __DIR__ . '/placeholder.php'; ?>
     <?php endif; ?>
   </div>
 
   <div class="flex flex-1 flex-col gap-4 p-6">
-    <div class="flex items-center justify-between gap-3">
-      <?php $rating = $card->rating; include __DIR__ . '/stars.php'; ?>
-      <span class="text-sm font-semibold text-slate-700"><?= $card->rating->value ?>,0</span>
-    </div>
+    <?php if ($card->rating->isRated()): ?>
+      <div class="flex items-center justify-between gap-3">
+        <?php $rating = $card->rating; include __DIR__ . '/stars.php'; ?>
+        <span class="text-sm font-semibold text-slate-700" aria-hidden="true"><?= $card->rating->value ?>,0</span>
+      </div>
+    <?php endif; ?>
 
     <?php if ($card->text !== null): ?>
       <div class="flex-1">

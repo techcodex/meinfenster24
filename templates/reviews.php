@@ -19,10 +19,10 @@ $avg = number_format($page->averageRating, 1, ',', '');
     <header class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
       <p class="text-sm font-semibold uppercase tracking-widest text-blue-700">Kundenstimmen</p>
       <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Das sagen unsere Kunden</h1>
-      <?php if ($page->count > 0): ?>
+      <?php if ($page->ratedCount > 0): ?>
         <p class="mt-4 flex items-center justify-center gap-2 text-slate-600">
           <svg class="h-6 w-6 fill-amber-400" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8L10 1.5z"/></svg>
-          <span><strong class="text-slate-900"><?= $e($avg) ?></strong> von 5 · <?= $page->count ?> Bewertungen</span>
+          <span><strong class="text-slate-900"><?= $e($avg) ?></strong> von 5 · <?= $page->ratedCount ?> Bewertungen</span>
         </p>
       <?php endif; ?>
     </header>
