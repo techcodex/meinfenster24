@@ -18,7 +18,7 @@ final class ReviewPageTest extends TestCase
     {
         $renderer = new Renderer(__DIR__ . '/../../templates');
 
-        return $renderer->render('reviews', ['page' => (new ReviewService(new FakeReviewRepository($reviews)))->getPage(), 'renderer' => $renderer]);
+        return $renderer->render('reviews', ['page' => (new ReviewService(new FakeReviewRepository($reviews)))->getPage()]);
     }
 
     public function testCardContainsAllRequiredElements(): void

@@ -1,6 +1,5 @@
 <?php
 /** @var \App\Model\ReviewPage $page */
-/** @var \App\View\Renderer $renderer */
 $e = [\App\View\Renderer::class, 'e'];
 $avg = number_format($page->averageRating, 1, ',', '');
 ?>

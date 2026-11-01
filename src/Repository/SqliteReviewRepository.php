@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Model\Review;
 use App\Model\ReviewImage;
 use PDO;
+use RuntimeException;
 
 final class SqliteReviewRepository implements ReviewRepositoryInterface
 {
@@ -16,20 +17,24 @@ final class SqliteReviewRepository implements ReviewRepositoryInterface
 
     public function findActive(): array
     {
-        $rows = $this->pdo->query(
+        $result = $this->pdo->query(
             'SELECT r_id, anzahl_sterne, name, text, bestelldatum
                FROM rezensionen
               WHERE active = 1
               ORDER BY bestelldatum DESC, r_id DESC'
-        )->fetchAll();
+        );
+        if ($result === false) {
+            throw new RuntimeException('Failed to query reviews.');
+        }
+        $rows = $result->fetchAll();
 
         if ($rows === []) {
             return [];
         }
 
-        $imagesByReview = $this->loadImages(array_map(static fn (array $r): int => (int) $r['r_id'], $rows));
+        $imagesByReview = $this->loadImages(array_values(array_map(static fn (array $r): int => (int) $r['r_id'], $rows)));
 
-        return array_map(
+        return array_values(array_map(
             static fn (array $r): Review => new Review(
                 id: (int) $r['r_id'],
                 stars: $r['anzahl_sterne'] !== null ? (int) $r['anzahl_sterne'] : null,
@@ -39,7 +44,7 @@ final class SqliteReviewRepository implements ReviewRepositoryInterface
                 images: $imagesByReview[(int) $r['r_id']] ?? [],
             ),
             $rows
-        );
+        ));
     }
 
     /**
