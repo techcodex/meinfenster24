@@ -5,8 +5,8 @@ with SQL in the PHP backend and rendered server-side with Tailwind CSS.
 
 **Stack:** PHP 8.3 · PDO SQLite · Tailwind CSS 3 · PHPUnit 11 · Docker (Apache) · PHPStan
 
-**Structure (MVC):** `public/index.php` bootstraps → `ReviewController` → `ReviewService` (business logic) →
-`SqliteReviewRepository` (SQL) → models (`Review`, `ReviewCard`, `ReviewPage`) → PHP templates in `templates/` (view).
+**Structure (MVC):** `public/index.php` bootstraps `ReviewController` `ReviewService` (business logic)
+`SqliteReviewRepository` (SQL) models (`Review`, `ReviewCard`, `ReviewPage`) PHP templates in `templates/` (view).
 The lightbox uses [baguetteBox.js](https://github.com/feimosi/baguetteBox.js) from the jsDelivr CDN, so it needs internet
 access; without it the image link opens the full-size photo instead.
 
@@ -28,7 +28,7 @@ composer install && php -S localhost:8000 -t public
 ```bash
 docker compose --profile test run --rm --build test   # or: make test
 composer test                                         # local
-composer stan                                         # static analysis (level 6)
+composer stan                                         # static analysis (level 7)
 ```
 
 The compiled `public/assets/app.css` is committed; rebuild with `npm install && npm run build`.
