@@ -1,0 +1,9 @@
+# Auto-loaded by `docker compose up` for local development.
+# Mounts source code so edits (and die()/var_dump debugging) show up on refresh without a rebuild.
+# Skip it with: docker compose -f docker-compose.yml up
+services:
+  web:
+    volumes:
+      - ./src:/var/www/src
+      - ./templates:/var/www/templates
+      - ./public:/var/www/public

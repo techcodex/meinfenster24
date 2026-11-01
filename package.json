@@ -1,0 +1,9 @@
+{
+  "name": "meinfenster24-review-cards",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i resources/app.css -o public/assets/app.css --minify",
+    "watch": "tailwindcss -i resources/app.css -o public/assets/app.css --watch"
+  },
+  "devDependencies": { "tailwindcss": "3.4.17" }
+}
