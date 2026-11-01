@@ -40,7 +40,7 @@ final class ReviewPageTest extends TestCase
 
         self::assertStringContainsString('aria-label="Kein Bild vorhanden"', $html);
         self::assertStringNotContainsString('data-review-image', $html);
-        self::assertStringNotContainsString('data-lightbox-open', $html);
+        self::assertStringNotContainsString('data-review-opener', $html);
         self::assertStringContainsString('Lukas R.', $html);
     }
 
@@ -52,8 +52,9 @@ final class ReviewPageTest extends TestCase
         ])]);
 
         self::assertStringContainsString('2 Fotos', $html);
-        self::assertStringContainsString('data-lightbox-open', $html);
-        self::assertStringContainsString('https://x/b.jpg', $html);
+        self::assertStringContainsString('data-review-opener', $html);
+        self::assertStringContainsString('href="https://x/b.jpg"', $html);
+        self::assertSame(2, substr_count($html, 'data-gallery="review-1"'));
     }
 
     public function testSingleImageHasNoBadge(): void
@@ -61,7 +62,7 @@ final class ReviewPageTest extends TestCase
         $html = $this->html([new Review(1, 5, 'Max Mustermann', 'Super', null, [new ReviewImage('https://x/a.jpg', 'A')])]);
 
         self::assertStringNotContainsString('Fotos</span>', $html);
-        self::assertStringContainsString('data-lightbox-open', $html);
+        self::assertStringContainsString('data-review-opener', $html);
     }
 
     public function testUserContentIsEscaped(): void

@@ -12,6 +12,7 @@ $avg = number_format($page->averageRating, 1, ',', '');
   <title>Kundenbewertungen – meinfenster24</title>
   <meta name="description" content="Das sagen unsere Kunden über meinfenster24.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect x='9' y='6' width='30' height='36' rx='2' fill='none' stroke='%231d4ed8' stroke-width='4'/%3E%3Cpath d='M24 6v36M9 24h30' stroke='%231d4ed8' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css" integrity="sha384-GPAzSuZc0kFvdIev6wm9zg8gnafE8tLso7rsAYQfc9hAdWCpOcpcNI5W9lWkYcsd" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/app.css">
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased">
@@ -35,18 +36,7 @@ $avg = number_format($page->averageRating, 1, ',', '');
       </section>
     <?php endif; ?>
   </main>
-  <dialog id="lightbox" aria-label="Fotogalerie"
-          class="m-0 h-full max-h-none w-full max-w-none bg-transparent p-0 text-white backdrop:bg-slate-950/90">
-    <div class="flex h-full w-full flex-col items-center justify-center gap-3 p-4 sm:p-8" data-lightbox-backdrop>
-      <button type="button" class="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-2xl leading-none hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white" aria-label="Schließen" data-lightbox-close>&times;</button>
-      <div class="flex min-h-0 w-full flex-1 items-center justify-center gap-2 sm:gap-4">
-        <button type="button" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-2xl hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white" aria-label="Vorheriges Foto" data-lightbox-prev>&#8249;</button>
-        <img src="" alt="" class="max-h-full min-w-0 max-w-full rounded-lg object-contain shadow-2xl" data-lightbox-img>
-        <button type="button" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-2xl hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white" aria-label="Nächstes Foto" data-lightbox-next>&#8250;</button>
-      </div>
-      <p class="text-sm text-slate-300" aria-live="polite" data-lightbox-caption></p>
-    </div>
-  </dialog>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js" integrity="sha384-/+Fc1LD6ksHYZ+2MChiSfjEXBcl4q2axUWhs6/CdnfqY5aLmrPwtysVzyeP0s60b" crossorigin="anonymous" defer></script>
   <script src="/assets/app.js" defer></script>
 </body>
 </html>

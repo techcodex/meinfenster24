@@ -3,20 +3,19 @@
 /** @var callable(?string): string $e escape helper defined in reviews.php */
 $image = $card->primaryImage();
 $count = count($card->images);
-$imagesJson = json_encode(
-    array_map(static fn (\App\Model\ReviewImage $i): array => ['url' => $i->url, 'alt' => $i->alt], $card->images),
-    JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES
-);
 ?>
 <article class="review-card flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-lg" data-review-id="<?= $card->id ?>">
   <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
     <?php if ($image !== null): ?>
-      <button type="button" class="group block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-blue-600"
-              aria-haspopup="dialog" aria-label="<?= $count > 1 ? "$count Fotos ansehen" : 'Foto vergrößern' ?>"
-              data-lightbox-open data-images="<?= $e($imagesJson) ?>">
+      <a href="<?= $e($image->url) ?>" class="glightbox group block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-blue-600"
+         data-gallery="review-<?= $card->id ?>" data-description="<?= $e($image->alt) ?>"
+         aria-label="<?= $count > 1 ? "$count Fotos ansehen" : 'Foto vergrößern' ?>" data-review-opener>
         <img src="<?= $e($image->url) ?>" alt="<?= $e($image->alt) ?>" loading="lazy" decoding="async"
              class="h-full w-full object-cover transition duration-300 group-hover:scale-105" data-review-image>
-      </button>
+      </a>
+      <?php foreach (array_slice($card->images, 1) as $more): ?>
+        <a href="<?= $e($more->url) ?>" class="glightbox hidden" data-gallery="review-<?= $card->id ?>" data-description="<?= $e($more->alt) ?>" aria-hidden="true" tabindex="-1"></a>
+      <?php endforeach; ?>
       <div class="absolute inset-0 hidden" data-review-placeholder><?php include __DIR__ . '/placeholder.php'; ?></div>
       <?php if ($count > 1): ?>
         <span class="pointer-events-none absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-slate-900/70 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur">
